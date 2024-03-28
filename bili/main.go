@@ -9,11 +9,16 @@ import (
 	"github.com/wordpress-plus/kit-logger/viperx"
 	"github.com/wordpress-plus/kit-logger/zapx"
 	"go.uber.org/zap"
+	"os"
 )
 
 func main() {
 	// init viper
-	global.VIPER = viperx.Viper(&global.CONFIG, "config-local.yaml") // 初始化Viper
+	config := os.Getenv("config")
+	if len(config) == 0 {
+		config = "config-local.yaml"
+	}
+	global.VIPER = viperx.Viper(&global.CONFIG, config) // 初始化Viper
 	global.LOG = zapx.Zap(global.CONFIG.Zap)
 	zap.ReplaceGlobals(global.LOG)
 

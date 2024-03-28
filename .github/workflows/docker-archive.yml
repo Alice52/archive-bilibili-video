@@ -51,13 +51,17 @@ jobs:
           restore-keys: |
             go-${{ runner.os }}-
 
-      - name: Build & Push Image
+      - name: Build Archive Of Bilibili Then Push Image
         run: |
-          # MODULE_NAME=bili
-          cd $PROJECT_HOME
+          MODULE_NAME=bili
+          cd $PROJECT_HOME/$MODULE_NAME
+          go list -f '{{.Dir}}/...' -m | xargs go build -o bin/
+          ls -lah
+
           image=$IMAGE_PREFIX-go${{ matrix.go }}:${TAG}
           docker build -f Dockerfile -t ${image} .
           docker login --username=$ALI_DOCKER_USERNAME --password=$ALI_DOCKER_PASSWORD $ALI_DOCKER_REGISTRY
           docker tag $image $ALI_DOCKER_REGISTRY/alice52/$image
           docker push $ALI_DOCKER_REGISTRY/alice52/$image
           echo "image:" ${image}
+
