@@ -1,6 +1,6 @@
 system:
   env: local
-  db-type: pgsql
+  db-type: mysql
   addr: 8080
 
 zap:
@@ -19,18 +19,18 @@ email:
   from: zzhang_xz@163.com
   host: smtp.163.com
   secret: ENC(Mxw6y2NKApKw9TsIPvbuL3hvuhrTOIrpFQXMxgxF8JzAUZI75Xuqb+jepoFkfXrB)
-  nickname: alice52-bilibi-archive
+  nickname: bilibi-archive
   port: 465
   is-ssl: true
 
 pgsql:
-  port: "5432"
+  port: ENC(U+UIq85Z10ZpmuJjFuC9GSni8WTgeidQq1GIEefC7o0o3Ip9vqvvBYKPGdYV922z)
   config: ""
   db-name: bili_archive
-  username: zack
-  password: ENC(SPYUs39G6FShX82STfkMcXIPY+KwdXsg/+thsNSWj/+tJkQvVEI5MROZGJekMroH)
-  path: ENC(aVrzRiZluVu5iTsCgMppBa3AD52x8XZvoqthivnHxab9m9oVL1FUqrsBOF+gXdXy3kilyCu5vCeni818gFEZgg==)
-  log-mode: error
+  username: bili
+  password: ENC(DrJwohxgMnQ6sUpj8l8EbHV11Y00Ptd9kZc/baaYBDidUnXnOyDPIYBT8CVeAIgZ)
+  path: 10.0.4.5
+  log-mode: debug
   max-idle-conns: 10
   max-open-conns: 100
   singular: false

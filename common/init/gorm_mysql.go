@@ -4,13 +4,14 @@ import (
 	"github.com/alice52/archive/common/config"
 	"github.com/alice52/archive/common/global"
 	"github.com/alice52/archive/common/init/internal"
+	"github.com/alice52/archive/common/migration"
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 // GormMysql 初始化Mysql数据库
-func GormMysql() *gorm.DB {
+func GormMysql(doInit bool) *gorm.DB {
 	m := global.CONFIG.Mysql
 	if m.Dbname == "" {
 		return nil
@@ -28,8 +29,10 @@ func GormMysql() *gorm.DB {
 	sqlDB, _ := db.DB()
 	sqlDB.SetMaxIdleConns(m.MaxIdleConns)
 	sqlDB.SetMaxOpenConns(m.MaxOpenConns)
+	if doInit {
+		migration.InitializeMysql(db)
+	}
 
-	//migration.InitializeMysql(db)
 	return db
 }
 

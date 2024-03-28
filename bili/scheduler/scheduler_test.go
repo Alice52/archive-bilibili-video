@@ -15,7 +15,7 @@ func init() {
 	global.LOG = zapx.Zap(global.CONFIG.Zap)
 
 	// init db and do migration
-	global.DB = initialize.GormMysql()
+	global.DB = initialize.GormMysql(false)
 	if global.DB.Error != nil {
 		panic(global.DB.Error)
 	} else {
