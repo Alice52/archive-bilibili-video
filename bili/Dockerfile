@@ -2,10 +2,10 @@ FROM alpine:latest
 
 LABEL MAINTAINER="zackzhang52@gmail.com"
 
-WORKDIR /go/src/github.com/alice52/archive
+WORKDIR /
 
-COPY ./bin/bili ./server
-COPY ./config-prod.yaml ./
+COPY ./bin/bili /bili
+COPY ./config-prod.yaml / 
 
 EXPOSE 8888
-ENTRYPOINT ./server -c config-prod.yaml
+CMD ["./bili -c config-prod.yaml"]
