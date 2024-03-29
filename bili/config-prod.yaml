@@ -23,7 +23,7 @@ email:
   port: 465
   is-ssl: true
 
-pgsql:
+mysql:
   port: ENC(U+UIq85Z10ZpmuJjFuC9GSni8WTgeidQq1GIEefC7o0o3Ip9vqvvBYKPGdYV922z)
   config: ""
   db-name: bili_archive
