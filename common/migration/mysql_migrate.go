@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/alice52/archive/common/global"
 	"github.com/golang-migrate/migrate/v4"
-	"github.com/golang-migrate/migrate/v4/database"
 	"github.com/golang-migrate/migrate/v4/database/mysql"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"gorm.io/gorm"
@@ -34,12 +33,12 @@ func MigrateMysql(db *sql.DB, mp string) error {
 	if err != nil {
 		return err
 	}
-	defer func(driver database.Driver) {
-		err := driver.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(driver)
+	//defer func(driver database.Driver) {
+	//	err := driver.Close()
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//}(driver)
 
 	m, err := migrate.NewWithDatabaseInstance(mp, "mysql", driver)
 	if err != nil {

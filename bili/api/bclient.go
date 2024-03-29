@@ -18,10 +18,6 @@ import (
 var LogonClient = new(BClient)
 var logonFunc = MustLogonClient
 
-func init() {
-	LogonClient, _ = GetLogonClient()
-}
-
 type BClient struct {
 	HttpClient *http.Client
 	cookie     []string
