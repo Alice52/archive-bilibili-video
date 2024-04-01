@@ -1,0 +1,41 @@
+relation:
+  - table: archived_ups_tag
+    relate:
+      - table: archived_ups
+        foreign_key: tag_id
+        type: has_many
+  - table: archived_ups
+    relate:
+      - table: archived_ups_tag
+        foreign_key: tag_id
+        type: has_one
+
+  - table: archived_fav_folders
+    relate:
+      - table: archived_fav
+        foreign_key: fid
+        type: has_many
+  - table: archived_fav
+    relate:
+      - table: archived_fav_folders
+        foreign_key: fid
+        type: has_one
+      - table: archived_video
+        foreign_key: bvid
+        type: has_one
+
+  - table: archived_coin
+    relate:
+      - table: archived_video
+        foreign_key: bvid
+        type: has_one
+  - table: archived_like
+    relate:
+      - table: archived_video
+        foreign_key: bvid
+        type: has_one
+  - table: archived_view_history
+    relate:
+      - table: archived_video
+        foreign_key: bvid
+        type: has_one

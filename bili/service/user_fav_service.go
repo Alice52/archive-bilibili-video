@@ -4,9 +4,9 @@ import (
 	"github.com/alice52/archive/bili/api"
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
-	"github.com/alice52/archive/common/global"
 	"github.com/gookit/goutil/jsonutil"
 	"github.com/spf13/cast"
+	"github.com/wordpress-plus/kit-common/kg"
 	"go.uber.org/zap"
 )
 
@@ -20,7 +20,7 @@ func (c *UserFavServiceIn) SyncUserFav() (err error) {
 
 	for _, f := range folders {
 		if err = DoSyncUserFav(f.ID); err != nil {
-			global.LOG.Error("sync user fav in folder: "+cast.ToString(f.Mid)+" error", zap.Error(err))
+			kg.L.Error("sync user fav in folder: "+cast.ToString(f.Mid)+" error", zap.Error(err))
 		}
 	}
 
@@ -59,7 +59,7 @@ func DoSyncUserFav(id int64) (err error) {
 		m.Resp = &resp
 
 		if err = dal.Q.ArchivedFav.Save(m); err != nil {
-			global.LOG.Error("sync upper error", zap.Error(err))
+			kg.L.Error("sync upper error", zap.Error(err))
 		}
 	}
 

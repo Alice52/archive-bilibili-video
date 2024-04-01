@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/alice52/archive/common/global"
 	"github.com/skip2/go-qrcode"
-	"github.com/wordpress-plus/kit-logger/viperx"
+	"github.com/wordpress-plus/kit-common/viperx/initialize"
 	"os"
 	"testing"
 )
@@ -21,7 +21,7 @@ func TestQrCodeImage(t *testing.T) {
 }
 
 func TestGenerateAndEmail(t *testing.T) {
-	global.VIPER = viperx.Viper(&global.CONFIG, "../config-local.yaml")
+	initialize.Viper(&global.CONFIG, "../config-local.yaml")
 
 	err := GenerateAndEmail("zack", qrcode.Low, os.Stdout)
 	if err != nil {

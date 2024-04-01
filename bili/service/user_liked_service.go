@@ -4,8 +4,8 @@ import (
 	"github.com/alice52/archive/bili/api"
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
-	"github.com/alice52/archive/common/global"
 	"github.com/gookit/goutil/jsonutil"
+	"github.com/wordpress-plus/kit-common/kg"
 	"go.uber.org/zap"
 )
 
@@ -39,7 +39,7 @@ func (c *UserLikedServiceIn) SyncUserLiked() (err error) {
 		m.Resp = &resp
 
 		if err = dal.Q.ArchivedLike.Save(m); err != nil {
-			global.LOG.Error("sync user liked error", zap.Error(err))
+			kg.L.Error("sync user liked error", zap.Error(err))
 		}
 	}
 

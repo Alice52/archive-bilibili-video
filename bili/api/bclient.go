@@ -7,7 +7,7 @@ import (
 	c "github.com/alice52/archive/bili/api/common"
 	"github.com/alice52/archive/bili/api/errs"
 	m "github.com/alice52/archive/bili/api/model"
-	"github.com/alice52/archive/common/global"
+	"github.com/wordpress-plus/kit-common/kg"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -94,7 +94,7 @@ func (client *BClient) Get(url string) ([]byte, error) {
 		if ss.Code != 0 {
 			return nil, errs.StatusError{Code: ss.Code, Cause: ss.Message}
 		}
-		global.LOG.Info(string(b))
+		kg.L.Info(string(b))
 
 		return b, err
 	}
@@ -167,7 +167,7 @@ func (client *BClient) GetP(url string) ([]byte, error) {
 		if ss.Code != 0 {
 			return nil, errs.StatusError{Code: ss.Code, Cause: ss.Message}
 		}
-		global.LOG.Info(string(b))
+		kg.L.Info(string(b))
 
 		return b, err
 	}

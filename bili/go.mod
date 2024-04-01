@@ -3,7 +3,6 @@ module github.com/alice52/archive/bili
 go 1.20
 
 require (
-	github.com/alice52/archive/common v0.0.0-20240327134504-8437a4076168
 	github.com/alice52/jasypt-go v1.0.6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/gookit/goutil v0.6.15
@@ -11,11 +10,11 @@ require (
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/spf13/cast v1.6.0
 	github.com/stretchr/testify v1.8.4
-	github.com/wordpress-plus/kit-logger v0.0.5
+	github.com/wordpress-plus/kit-common v0.0.7
 	go.uber.org/zap v1.26.0
 	gorm.io/driver/mysql v1.5.6
 	gorm.io/gen v0.3.25
-	gorm.io/gorm v1.25.8
+	gorm.io/gorm v1.25.9
 	gorm.io/plugin/dbresolver v1.5.1
 )
 
@@ -62,10 +61,11 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
+	github.com/wordpress-plus/kit-common v0.0.7 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
-	golang.org/x/crypto v0.16.0 // indirect
+	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.19.0 // indirect
@@ -76,6 +76,6 @@ require (
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/datatypes v1.1.1-0.20230130040222-c43177d3cf8c // indirect
-	gorm.io/driver/postgres v1.5.4 // indirect
+	gorm.io/driver/postgres v1.5.7 // indirect
 	gorm.io/hints v1.1.0 // indirect
 )

@@ -4,9 +4,9 @@ import (
 	"github.com/alice52/archive/bili/api"
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
-	"github.com/alice52/archive/common/global"
 	"github.com/gookit/goutil/jsonutil"
 	"github.com/spf13/cast"
+	"github.com/wordpress-plus/kit-common/kg"
 	"go.uber.org/zap"
 )
 
@@ -20,7 +20,7 @@ func (c *UserUpperServiceIn) SyncUppers() (err error) {
 
 	for _, tag := range upsTags {
 		if err = DoSyncUppers(tag.TagID); err != nil {
-			global.LOG.Error("sync upper in tag"+cast.ToString(tag.TagID)+" error", zap.Error(err))
+			kg.L.Error("sync upper in tag"+cast.ToString(tag.TagID)+" error", zap.Error(err))
 		}
 	}
 
@@ -43,7 +43,7 @@ func DoSyncUppers(tagId int64) (err error) {
 		resp := jsonutil.MustString(upper)
 		m.Resp = &resp
 		if err = dal.Q.ArchivedUp.Save(m); err != nil {
-			global.LOG.Error("sync upper error", zap.Error(err))
+			kg.L.Error("sync upper error", zap.Error(err))
 		}
 	}
 

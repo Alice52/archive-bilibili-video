@@ -9,20 +9,20 @@ import (
 	"gorm.io/gorm"
 )
 
-var MySQLDSN string
+var m string
 
 func init() {
 	if v, err := jasypt.New().Decrypt("wJ0ZxlPJVsTm/iaFWxAIa1M5jF+eYR9JvAFlnCdxzCbWJ+TQY093XQ4OKiqqmjBKzHxFIvOoiZ7/eMzuHBaU7zZ2UzzZyHj0/jbDoLIfqK6qu20k4ibz8BXR7bzUAFykoxSTNW00g1kWUPj5yiBWql/LrtkeKMmCusoreXsRNwII+DvPIEVI9JKIB2ynYkyT"); err != nil {
 		panic(err)
 	} else {
-		MySQLDSN = v
+		m = v
 	}
 }
 
 func main() {
 
 	// 连接数据库
-	db, err := gorm.Open(mysql.Open(MySQLDSN))
+	db, err := gorm.Open(mysql.Open(m))
 	if err != nil {
 		panic(fmt.Errorf("cannot establish db connection: %w", err))
 	}
