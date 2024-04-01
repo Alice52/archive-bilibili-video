@@ -27,7 +27,7 @@ func init() {
 func TestVideoFk(t *testing.T) {
 
 	dal.SetDefault(kg.DB)
-	find, err := dal.ArchivedCoin.Preload(dal.ArchivedCoin.VideoInfo).Find()
+	find, err := dal.ArchivedCoin.Preload(dal.ArchivedCoin.ArchivedVideo).Find()
 	if find != nil && err != nil {
 		return
 	}

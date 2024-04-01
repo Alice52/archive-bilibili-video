@@ -22,6 +22,7 @@ type ArchivedUpsTag struct {
 	Count_     *int64         `gorm:"column:count;type:bigint;comment:count" json:"count"`   // count
 	Resp       *string        `gorm:"column:resp;type:json" json:"resp"`
 	Tip        *string        `gorm:"column:tip;type:varchar(128);comment:tip" json:"tip"` // tip
+	ArchivedUp []ArchivedUp   `gorm:"foreignKey:tag_id" json:"archived_up"`
 }
 
 // TableName ArchivedUpsTag's table name

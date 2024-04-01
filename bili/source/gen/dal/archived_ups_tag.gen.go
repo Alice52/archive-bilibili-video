@@ -30,11 +30,21 @@ func newArchivedUpsTag(db *gorm.DB, opts ...gen.DOOption) archivedUpsTag {
 	_archivedUpsTag.TagID = field.NewInt64(tableName, "tag_id")
 	_archivedUpsTag.CreateTime = field.NewTime(tableName, "create_time")
 	_archivedUpsTag.UpdateTime = field.NewTime(tableName, "update_time")
-	_archivedUpsTag.DeleteTime = field.NewTime(tableName, "delete_time")
+	_archivedUpsTag.DeleteTime = field.NewField(tableName, "delete_time")
 	_archivedUpsTag.Name = field.NewString(tableName, "name")
 	_archivedUpsTag.Count_ = field.NewInt64(tableName, "count")
 	_archivedUpsTag.Resp = field.NewString(tableName, "resp")
 	_archivedUpsTag.Tip = field.NewString(tableName, "tip")
+	_archivedUpsTag.ArchivedUp = archivedUpsTagHasManyArchivedUp{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("ArchivedUp", "model.ArchivedUp"),
+		ArchivedUpsTag: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("ArchivedUp.ArchivedUpsTag", "model.ArchivedUpsTag"),
+		},
+	}
 
 	_archivedUpsTag.fillFieldMap()
 
@@ -49,11 +59,12 @@ type archivedUpsTag struct {
 	TagID      field.Int64 // tagid
 	CreateTime field.Time
 	UpdateTime field.Time
-	DeleteTime field.Time
+	DeleteTime field.Field
 	Name       field.String // name
 	Count_     field.Int64  // count
 	Resp       field.String
 	Tip        field.String // tip
+	ArchivedUp archivedUpsTagHasManyArchivedUp
 
 	fieldMap map[string]field.Expr
 }
@@ -73,7 +84,7 @@ func (a *archivedUpsTag) updateTableName(table string) *archivedUpsTag {
 	a.TagID = field.NewInt64(table, "tag_id")
 	a.CreateTime = field.NewTime(table, "create_time")
 	a.UpdateTime = field.NewTime(table, "update_time")
-	a.DeleteTime = field.NewTime(table, "delete_time")
+	a.DeleteTime = field.NewField(table, "delete_time")
 	a.Name = field.NewString(table, "name")
 	a.Count_ = field.NewInt64(table, "count")
 	a.Resp = field.NewString(table, "resp")
@@ -94,7 +105,7 @@ func (a *archivedUpsTag) GetFieldByName(fieldName string) (field.OrderExpr, bool
 }
 
 func (a *archivedUpsTag) fillFieldMap() {
-	a.fieldMap = make(map[string]field.Expr, 8)
+	a.fieldMap = make(map[string]field.Expr, 9)
 	a.fieldMap["tag_id"] = a.TagID
 	a.fieldMap["create_time"] = a.CreateTime
 	a.fieldMap["update_time"] = a.UpdateTime
@@ -103,6 +114,7 @@ func (a *archivedUpsTag) fillFieldMap() {
 	a.fieldMap["count"] = a.Count_
 	a.fieldMap["resp"] = a.Resp
 	a.fieldMap["tip"] = a.Tip
+
 }
 
 func (a archivedUpsTag) clone(db *gorm.DB) archivedUpsTag {
@@ -113,6 +125,81 @@ func (a archivedUpsTag) clone(db *gorm.DB) archivedUpsTag {
 func (a archivedUpsTag) replaceDB(db *gorm.DB) archivedUpsTag {
 	a.archivedUpsTagDo.ReplaceDB(db)
 	return a
+}
+
+type archivedUpsTagHasManyArchivedUp struct {
+	db *gorm.DB
+
+	field.RelationField
+
+	ArchivedUpsTag struct {
+		field.RelationField
+	}
+}
+
+func (a archivedUpsTagHasManyArchivedUp) Where(conds ...field.Expr) *archivedUpsTagHasManyArchivedUp {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a archivedUpsTagHasManyArchivedUp) WithContext(ctx context.Context) *archivedUpsTagHasManyArchivedUp {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a archivedUpsTagHasManyArchivedUp) Session(session *gorm.Session) *archivedUpsTagHasManyArchivedUp {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a archivedUpsTagHasManyArchivedUp) Model(m *model.ArchivedUpsTag) *archivedUpsTagHasManyArchivedUpTx {
+	return &archivedUpsTagHasManyArchivedUpTx{a.db.Model(m).Association(a.Name())}
+}
+
+type archivedUpsTagHasManyArchivedUpTx struct{ tx *gorm.Association }
+
+func (a archivedUpsTagHasManyArchivedUpTx) Find() (result []*model.ArchivedUp, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a archivedUpsTagHasManyArchivedUpTx) Append(values ...*model.ArchivedUp) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a archivedUpsTagHasManyArchivedUpTx) Replace(values ...*model.ArchivedUp) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a archivedUpsTagHasManyArchivedUpTx) Delete(values ...*model.ArchivedUp) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a archivedUpsTagHasManyArchivedUpTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a archivedUpsTagHasManyArchivedUpTx) Count() int64 {
+	return a.tx.Count()
 }
 
 type archivedUpsTagDo struct{ gen.DO }

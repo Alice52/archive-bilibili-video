@@ -720,6 +720,10 @@ github.com/tv42/httpunix v0.0.0-20150427012821-b75d8614f926/go.mod h1:9ESjWnEqri
 github.com/unrolled/secure v1.13.0 h1:sdr3Phw2+f8Px8HE5sd1EHdj1aV3yUwed/uZXChLFsk=
 github.com/unrolled/secure v1.13.0/go.mod h1:BmF5hyM6tXczk3MpQkFf1hpKSRqCyhqcbiQtiAF7+40=
 github.com/we7coreteam/gorm-gen-yaml v1.0.7 h1:zGpAjeysRfFUYIM5X7zzW/k2AMRdMc60CaYvMwPDjiY=
+github.com/we7coreteam/gorm-gen-yaml v1.0.7/go.mod h1:WAFKkK+958PFd5SBLRlIrUySrJeqUriFaiP31duc8eQ=
+github.com/wordpress-plus/kit-common v0.0.8 h1:mOhKFfjir8Oxmw70U+cHUN7aJWEbkLr4uWgmAhI6bIo=
+github.com/wordpress-plus/kit-common v0.0.8/go.mod h1:AmejBkPUI5RJaStDZCMZBCi1i9QHXITUBCCnis5nbO8=
+github.com/wordpress-plus/kit-common v0.0.9/go.mod h1:AmejBkPUI5RJaStDZCMZBCi1i9QHXITUBCCnis5nbO8=
 github.com/xanzy/go-gitlab v0.15.0 h1:rWtwKTgEnXyNUGrOArN7yyc3THRkpYcKXIXia9abywQ=
 github.com/xanzy/go-gitlab v0.15.0/go.mod h1:8zdQa/ri1dfn8eS3Ir1SyfvOKlw7WBJ8DVThkpGiXrs=
 github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778 h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8=
@@ -944,6 +948,7 @@ gorm.io/driver/sqlserver v1.5.1/go.mod h1:AYHzzte2msKTmYBYsSIq8ZUsznLJwBdkB2wpI+
 gorm.io/gorm v1.25.7-0.20240204074919-46816ad31dde/go.mod h1:hbnx/Oo0ChWMn1BIhpy1oYozzpM15i4YPuHDmfYtwg8=
 gorm.io/plugin/dbresolver v1.4.1 h1:Ug4LcoPhrvqq71UhxtF346f+skTYoCa/nEsdjvHwEzk=
 gorm.io/plugin/dbresolver v1.4.1/go.mod h1:CTbCtMWhsjXSiJqiW2R8POvJ2cq18RVOl4WGyT5nhNc=
+gorm.io/plugin/dbresolver v1.5.0/go.mod h1:l4Cn87EHLEYuqUncpEeTC2tTJQkjngPSD+lo8hIvcT0=
 honnef.co/go/tools v0.0.1-2020.1.4 h1:UoveltGrhghAA7ePc+e+QYDHXrBps2PqFZiHkGR/xK8=
 lukechampine.com/uint128 v1.2.0 h1:mBi/5l91vocEN8otkC5bDLhi2KdCticRiwbdB0O+rjI=
 lukechampine.com/uint128 v1.2.0/go.mod h1:c4eWIwlEGaxC/+H1VguhU4PHXNWDCDMUlWdIWl2j1gk=

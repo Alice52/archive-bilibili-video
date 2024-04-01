@@ -44,16 +44,16 @@ func newArchivedFav(db *gorm.DB, opts ...gen.DOOption) archivedFav {
 	_archivedFav.Upper = field.NewString(tableName, "upper")
 	_archivedFav.CntInfo = field.NewString(tableName, "cnt_info")
 	_archivedFav.Resp = field.NewString(tableName, "resp")
-	_archivedFav.FavFolder = archivedFavHasOneFavFolder{
+	_archivedFav.ArchivedFavFolder = archivedFavHasOneArchivedFavFolder{
 		db: db.Session(&gorm.Session{}),
 
-		RelationField: field.NewRelation("FavFolder", "model.ArchivedFavFolder"),
+		RelationField: field.NewRelation("ArchivedFavFolder", "model.ArchivedFavFolder"),
 	}
 
-	_archivedFav.VideoInfo = archivedFavHasOneVideoInfo{
+	_archivedFav.ArchivedVideo = archivedFavHasOneArchivedVideo{
 		db: db.Session(&gorm.Session{}),
 
-		RelationField: field.NewRelation("VideoInfo", "model.ArchivedVideo"),
+		RelationField: field.NewRelation("ArchivedVideo", "model.ArchivedVideo"),
 	}
 
 	_archivedFav.fillFieldMap()
@@ -65,27 +65,27 @@ func newArchivedFav(db *gorm.DB, opts ...gen.DOOption) archivedFav {
 type archivedFav struct {
 	archivedFavDo
 
-	ALL        field.Asterisk
-	ID         field.Int64
-	CreateTime field.Time
-	UpdateTime field.Time
-	DeleteTime field.Field
-	Fid        field.Int64  // bili folder
-	Bvid       field.String // bili avid
-	Cover      field.String // video cover
-	Ctime      field.Int64  // video create time
-	Duration   field.Int64  // video duration
-	FavTime    field.Int64  // video favor time
-	Intro      field.String // video intro
-	Title      field.String // video title
-	Type       field.Int64  // video type
-	Season     field.String // video season
-	Upper      field.String // {"mid": 173986740, "name": "这个月-"}
-	CntInfo    field.String // {"collect": 73600, "play": 1068474, "danmaku": 2632, "vt": 0, "play_switch": 0, "reply": 0, "view_text_1": "106.8万" }
-	Resp       field.String
-	FavFolder  archivedFavHasOneFavFolder
+	ALL               field.Asterisk
+	ID                field.Int64
+	CreateTime        field.Time
+	UpdateTime        field.Time
+	DeleteTime        field.Field
+	Fid               field.Int64  // bili folder
+	Bvid              field.String // bili avid
+	Cover             field.String // video cover
+	Ctime             field.Int64  // video create time
+	Duration          field.Int64  // video duration
+	FavTime           field.Int64  // video favor time
+	Intro             field.String // video intro
+	Title             field.String // video title
+	Type              field.Int64  // video type
+	Season            field.String // video season
+	Upper             field.String // {"mid": 173986740, "name": "这个月-"}
+	CntInfo           field.String // {"collect": 73600, "play": 1068474, "danmaku": 2632, "vt": 0, "play_switch": 0, "reply": 0, "view_text_1": "106.8万" }
+	Resp              field.String
+	ArchivedFavFolder archivedFavHasOneArchivedFavFolder
 
-	VideoInfo archivedFavHasOneVideoInfo
+	ArchivedVideo archivedFavHasOneArchivedVideo
 
 	fieldMap map[string]field.Expr
 }
@@ -166,13 +166,13 @@ func (a archivedFav) replaceDB(db *gorm.DB) archivedFav {
 	return a
 }
 
-type archivedFavHasOneFavFolder struct {
+type archivedFavHasOneArchivedFavFolder struct {
 	db *gorm.DB
 
 	field.RelationField
 }
 
-func (a archivedFavHasOneFavFolder) Where(conds ...field.Expr) *archivedFavHasOneFavFolder {
+func (a archivedFavHasOneArchivedFavFolder) Where(conds ...field.Expr) *archivedFavHasOneArchivedFavFolder {
 	if len(conds) == 0 {
 		return &a
 	}
@@ -185,27 +185,27 @@ func (a archivedFavHasOneFavFolder) Where(conds ...field.Expr) *archivedFavHasOn
 	return &a
 }
 
-func (a archivedFavHasOneFavFolder) WithContext(ctx context.Context) *archivedFavHasOneFavFolder {
+func (a archivedFavHasOneArchivedFavFolder) WithContext(ctx context.Context) *archivedFavHasOneArchivedFavFolder {
 	a.db = a.db.WithContext(ctx)
 	return &a
 }
 
-func (a archivedFavHasOneFavFolder) Session(session *gorm.Session) *archivedFavHasOneFavFolder {
+func (a archivedFavHasOneArchivedFavFolder) Session(session *gorm.Session) *archivedFavHasOneArchivedFavFolder {
 	a.db = a.db.Session(session)
 	return &a
 }
 
-func (a archivedFavHasOneFavFolder) Model(m *model.ArchivedFav) *archivedFavHasOneFavFolderTx {
-	return &archivedFavHasOneFavFolderTx{a.db.Model(m).Association(a.Name())}
+func (a archivedFavHasOneArchivedFavFolder) Model(m *model.ArchivedFav) *archivedFavHasOneArchivedFavFolderTx {
+	return &archivedFavHasOneArchivedFavFolderTx{a.db.Model(m).Association(a.Name())}
 }
 
-type archivedFavHasOneFavFolderTx struct{ tx *gorm.Association }
+type archivedFavHasOneArchivedFavFolderTx struct{ tx *gorm.Association }
 
-func (a archivedFavHasOneFavFolderTx) Find() (result *model.ArchivedFavFolder, err error) {
+func (a archivedFavHasOneArchivedFavFolderTx) Find() (result *model.ArchivedFavFolder, err error) {
 	return result, a.tx.Find(&result)
 }
 
-func (a archivedFavHasOneFavFolderTx) Append(values ...*model.ArchivedFavFolder) (err error) {
+func (a archivedFavHasOneArchivedFavFolderTx) Append(values ...*model.ArchivedFavFolder) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -213,7 +213,7 @@ func (a archivedFavHasOneFavFolderTx) Append(values ...*model.ArchivedFavFolder)
 	return a.tx.Append(targetValues...)
 }
 
-func (a archivedFavHasOneFavFolderTx) Replace(values ...*model.ArchivedFavFolder) (err error) {
+func (a archivedFavHasOneArchivedFavFolderTx) Replace(values ...*model.ArchivedFavFolder) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -221,7 +221,7 @@ func (a archivedFavHasOneFavFolderTx) Replace(values ...*model.ArchivedFavFolder
 	return a.tx.Replace(targetValues...)
 }
 
-func (a archivedFavHasOneFavFolderTx) Delete(values ...*model.ArchivedFavFolder) (err error) {
+func (a archivedFavHasOneArchivedFavFolderTx) Delete(values ...*model.ArchivedFavFolder) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -229,21 +229,21 @@ func (a archivedFavHasOneFavFolderTx) Delete(values ...*model.ArchivedFavFolder)
 	return a.tx.Delete(targetValues...)
 }
 
-func (a archivedFavHasOneFavFolderTx) Clear() error {
+func (a archivedFavHasOneArchivedFavFolderTx) Clear() error {
 	return a.tx.Clear()
 }
 
-func (a archivedFavHasOneFavFolderTx) Count() int64 {
+func (a archivedFavHasOneArchivedFavFolderTx) Count() int64 {
 	return a.tx.Count()
 }
 
-type archivedFavHasOneVideoInfo struct {
+type archivedFavHasOneArchivedVideo struct {
 	db *gorm.DB
 
 	field.RelationField
 }
 
-func (a archivedFavHasOneVideoInfo) Where(conds ...field.Expr) *archivedFavHasOneVideoInfo {
+func (a archivedFavHasOneArchivedVideo) Where(conds ...field.Expr) *archivedFavHasOneArchivedVideo {
 	if len(conds) == 0 {
 		return &a
 	}
@@ -256,27 +256,27 @@ func (a archivedFavHasOneVideoInfo) Where(conds ...field.Expr) *archivedFavHasOn
 	return &a
 }
 
-func (a archivedFavHasOneVideoInfo) WithContext(ctx context.Context) *archivedFavHasOneVideoInfo {
+func (a archivedFavHasOneArchivedVideo) WithContext(ctx context.Context) *archivedFavHasOneArchivedVideo {
 	a.db = a.db.WithContext(ctx)
 	return &a
 }
 
-func (a archivedFavHasOneVideoInfo) Session(session *gorm.Session) *archivedFavHasOneVideoInfo {
+func (a archivedFavHasOneArchivedVideo) Session(session *gorm.Session) *archivedFavHasOneArchivedVideo {
 	a.db = a.db.Session(session)
 	return &a
 }
 
-func (a archivedFavHasOneVideoInfo) Model(m *model.ArchivedFav) *archivedFavHasOneVideoInfoTx {
-	return &archivedFavHasOneVideoInfoTx{a.db.Model(m).Association(a.Name())}
+func (a archivedFavHasOneArchivedVideo) Model(m *model.ArchivedFav) *archivedFavHasOneArchivedVideoTx {
+	return &archivedFavHasOneArchivedVideoTx{a.db.Model(m).Association(a.Name())}
 }
 
-type archivedFavHasOneVideoInfoTx struct{ tx *gorm.Association }
+type archivedFavHasOneArchivedVideoTx struct{ tx *gorm.Association }
 
-func (a archivedFavHasOneVideoInfoTx) Find() (result *model.ArchivedVideo, err error) {
+func (a archivedFavHasOneArchivedVideoTx) Find() (result *model.ArchivedVideo, err error) {
 	return result, a.tx.Find(&result)
 }
 
-func (a archivedFavHasOneVideoInfoTx) Append(values ...*model.ArchivedVideo) (err error) {
+func (a archivedFavHasOneArchivedVideoTx) Append(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -284,7 +284,7 @@ func (a archivedFavHasOneVideoInfoTx) Append(values ...*model.ArchivedVideo) (er
 	return a.tx.Append(targetValues...)
 }
 
-func (a archivedFavHasOneVideoInfoTx) Replace(values ...*model.ArchivedVideo) (err error) {
+func (a archivedFavHasOneArchivedVideoTx) Replace(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -292,7 +292,7 @@ func (a archivedFavHasOneVideoInfoTx) Replace(values ...*model.ArchivedVideo) (e
 	return a.tx.Replace(targetValues...)
 }
 
-func (a archivedFavHasOneVideoInfoTx) Delete(values ...*model.ArchivedVideo) (err error) {
+func (a archivedFavHasOneArchivedVideoTx) Delete(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -300,11 +300,11 @@ func (a archivedFavHasOneVideoInfoTx) Delete(values ...*model.ArchivedVideo) (er
 	return a.tx.Delete(targetValues...)
 }
 
-func (a archivedFavHasOneVideoInfoTx) Clear() error {
+func (a archivedFavHasOneArchivedVideoTx) Clear() error {
 	return a.tx.Clear()
 }
 
-func (a archivedFavHasOneVideoInfoTx) Count() int64 {
+func (a archivedFavHasOneArchivedVideoTx) Count() int64 {
 	return a.tx.Count()
 }
 

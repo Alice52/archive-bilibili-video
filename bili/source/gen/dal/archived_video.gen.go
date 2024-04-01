@@ -34,7 +34,7 @@ func newArchivedVideo(db *gorm.DB, opts ...gen.DOOption) archivedVideo {
 	_archivedVideo.SeasonID = field.NewInt64(tableName, "season_id")
 	_archivedVideo.CreateTime = field.NewTime(tableName, "create_time")
 	_archivedVideo.UpdateTime = field.NewTime(tableName, "update_time")
-	_archivedVideo.DeleteTime = field.NewTime(tableName, "delete_time")
+	_archivedVideo.DeleteTime = field.NewField(tableName, "delete_time")
 	_archivedVideo.Aid = field.NewInt64(tableName, "aid")
 	_archivedVideo.Cid = field.NewInt64(tableName, "cid")
 	_archivedVideo.Tid = field.NewInt64(tableName, "tid")
@@ -79,7 +79,7 @@ type archivedVideo struct {
 	SeasonID       field.Int64 // bili season_id
 	CreateTime     field.Time
 	UpdateTime     field.Time
-	DeleteTime     field.Time
+	DeleteTime     field.Field
 	Aid            field.Int64  // bili aid
 	Cid            field.Int64  // bili cid
 	Tid            field.Int64  // bili tid
@@ -129,7 +129,7 @@ func (a *archivedVideo) updateTableName(table string) *archivedVideo {
 	a.SeasonID = field.NewInt64(table, "season_id")
 	a.CreateTime = field.NewTime(table, "create_time")
 	a.UpdateTime = field.NewTime(table, "update_time")
-	a.DeleteTime = field.NewTime(table, "delete_time")
+	a.DeleteTime = field.NewField(table, "delete_time")
 	a.Aid = field.NewInt64(table, "aid")
 	a.Cid = field.NewInt64(table, "cid")
 	a.Tid = field.NewInt64(table, "tid")

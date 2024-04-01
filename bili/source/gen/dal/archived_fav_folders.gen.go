@@ -36,6 +36,21 @@ func newArchivedFavFolder(db *gorm.DB, opts ...gen.DOOption) archivedFavFolder {
 	_archivedFavFolder.MediaCount = field.NewInt64(tableName, "media_count")
 	_archivedFavFolder.Title = field.NewString(tableName, "title")
 	_archivedFavFolder.Resp = field.NewString(tableName, "resp")
+	_archivedFavFolder.ArchivedFav = archivedFavFolderHasManyArchivedFav{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("ArchivedFav", "model.ArchivedFav"),
+		ArchivedFavFolder: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("ArchivedFav.ArchivedFavFolder", "model.ArchivedFavFolder"),
+		},
+		ArchivedVideo: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("ArchivedFav.ArchivedVideo", "model.ArchivedVideo"),
+		},
+	}
 
 	_archivedFavFolder.fillFieldMap()
 
@@ -46,16 +61,17 @@ func newArchivedFavFolder(db *gorm.DB, opts ...gen.DOOption) archivedFavFolder {
 type archivedFavFolder struct {
 	archivedFavFolderDo
 
-	ALL        field.Asterisk
-	ID         field.Int64
-	Fid        field.Int64 // bili folder id
-	CreateTime field.Time
-	UpdateTime field.Time
-	DeleteTime field.Field
-	Mid        field.Int64  // bili uid
-	MediaCount field.Int64  // media count
-	Title      field.String // title
-	Resp       field.String
+	ALL         field.Asterisk
+	ID          field.Int64
+	Fid         field.Int64 // bili folder id
+	CreateTime  field.Time
+	UpdateTime  field.Time
+	DeleteTime  field.Field
+	Mid         field.Int64  // bili uid
+	MediaCount  field.Int64  // media count
+	Title       field.String // title
+	Resp        field.String
+	ArchivedFav archivedFavFolderHasManyArchivedFav
 
 	fieldMap map[string]field.Expr
 }
@@ -97,7 +113,7 @@ func (a *archivedFavFolder) GetFieldByName(fieldName string) (field.OrderExpr, b
 }
 
 func (a *archivedFavFolder) fillFieldMap() {
-	a.fieldMap = make(map[string]field.Expr, 9)
+	a.fieldMap = make(map[string]field.Expr, 10)
 	a.fieldMap["id"] = a.ID
 	a.fieldMap["fid"] = a.Fid
 	a.fieldMap["create_time"] = a.CreateTime
@@ -107,6 +123,7 @@ func (a *archivedFavFolder) fillFieldMap() {
 	a.fieldMap["media_count"] = a.MediaCount
 	a.fieldMap["title"] = a.Title
 	a.fieldMap["resp"] = a.Resp
+
 }
 
 func (a archivedFavFolder) clone(db *gorm.DB) archivedFavFolder {
@@ -117,6 +134,84 @@ func (a archivedFavFolder) clone(db *gorm.DB) archivedFavFolder {
 func (a archivedFavFolder) replaceDB(db *gorm.DB) archivedFavFolder {
 	a.archivedFavFolderDo.ReplaceDB(db)
 	return a
+}
+
+type archivedFavFolderHasManyArchivedFav struct {
+	db *gorm.DB
+
+	field.RelationField
+
+	ArchivedFavFolder struct {
+		field.RelationField
+	}
+	ArchivedVideo struct {
+		field.RelationField
+	}
+}
+
+func (a archivedFavFolderHasManyArchivedFav) Where(conds ...field.Expr) *archivedFavFolderHasManyArchivedFav {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a archivedFavFolderHasManyArchivedFav) WithContext(ctx context.Context) *archivedFavFolderHasManyArchivedFav {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a archivedFavFolderHasManyArchivedFav) Session(session *gorm.Session) *archivedFavFolderHasManyArchivedFav {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a archivedFavFolderHasManyArchivedFav) Model(m *model.ArchivedFavFolder) *archivedFavFolderHasManyArchivedFavTx {
+	return &archivedFavFolderHasManyArchivedFavTx{a.db.Model(m).Association(a.Name())}
+}
+
+type archivedFavFolderHasManyArchivedFavTx struct{ tx *gorm.Association }
+
+func (a archivedFavFolderHasManyArchivedFavTx) Find() (result []*model.ArchivedFav, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a archivedFavFolderHasManyArchivedFavTx) Append(values ...*model.ArchivedFav) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a archivedFavFolderHasManyArchivedFavTx) Replace(values ...*model.ArchivedFav) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a archivedFavFolderHasManyArchivedFavTx) Delete(values ...*model.ArchivedFav) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a archivedFavFolderHasManyArchivedFavTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a archivedFavFolderHasManyArchivedFavTx) Count() int64 {
+	return a.tx.Count()
 }
 
 type archivedFavFolderDo struct{ gen.DO }

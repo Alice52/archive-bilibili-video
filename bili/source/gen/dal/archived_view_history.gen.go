@@ -32,10 +32,10 @@ func newArchivedViewHistory(db *gorm.DB, opts ...gen.DOOption) archivedViewHisto
 	_archivedViewHistory.UpdateTime = field.NewTime(tableName, "update_time")
 	_archivedViewHistory.DeleteTime = field.NewField(tableName, "delete_time")
 	_archivedViewHistory.Resp = field.NewString(tableName, "resp")
-	_archivedViewHistory.VideoInfo = archivedViewHistoryHasOneVideoInfo{
+	_archivedViewHistory.ArchivedVideo = archivedViewHistoryHasOneArchivedVideo{
 		db: db.Session(&gorm.Session{}),
 
-		RelationField: field.NewRelation("VideoInfo", "model.ArchivedVideo"),
+		RelationField: field.NewRelation("ArchivedVideo", "model.ArchivedVideo"),
 	}
 
 	_archivedViewHistory.fillFieldMap()
@@ -47,13 +47,13 @@ func newArchivedViewHistory(db *gorm.DB, opts ...gen.DOOption) archivedViewHisto
 type archivedViewHistory struct {
 	archivedViewHistoryDo
 
-	ALL        field.Asterisk
-	Bvid       field.String
-	CreateTime field.Time
-	UpdateTime field.Time
-	DeleteTime field.Field
-	Resp       field.String
-	VideoInfo  archivedViewHistoryHasOneVideoInfo
+	ALL           field.Asterisk
+	Bvid          field.String
+	CreateTime    field.Time
+	UpdateTime    field.Time
+	DeleteTime    field.Field
+	Resp          field.String
+	ArchivedVideo archivedViewHistoryHasOneArchivedVideo
 
 	fieldMap map[string]field.Expr
 }
@@ -110,13 +110,13 @@ func (a archivedViewHistory) replaceDB(db *gorm.DB) archivedViewHistory {
 	return a
 }
 
-type archivedViewHistoryHasOneVideoInfo struct {
+type archivedViewHistoryHasOneArchivedVideo struct {
 	db *gorm.DB
 
 	field.RelationField
 }
 
-func (a archivedViewHistoryHasOneVideoInfo) Where(conds ...field.Expr) *archivedViewHistoryHasOneVideoInfo {
+func (a archivedViewHistoryHasOneArchivedVideo) Where(conds ...field.Expr) *archivedViewHistoryHasOneArchivedVideo {
 	if len(conds) == 0 {
 		return &a
 	}
@@ -129,27 +129,27 @@ func (a archivedViewHistoryHasOneVideoInfo) Where(conds ...field.Expr) *archived
 	return &a
 }
 
-func (a archivedViewHistoryHasOneVideoInfo) WithContext(ctx context.Context) *archivedViewHistoryHasOneVideoInfo {
+func (a archivedViewHistoryHasOneArchivedVideo) WithContext(ctx context.Context) *archivedViewHistoryHasOneArchivedVideo {
 	a.db = a.db.WithContext(ctx)
 	return &a
 }
 
-func (a archivedViewHistoryHasOneVideoInfo) Session(session *gorm.Session) *archivedViewHistoryHasOneVideoInfo {
+func (a archivedViewHistoryHasOneArchivedVideo) Session(session *gorm.Session) *archivedViewHistoryHasOneArchivedVideo {
 	a.db = a.db.Session(session)
 	return &a
 }
 
-func (a archivedViewHistoryHasOneVideoInfo) Model(m *model.ArchivedViewHistory) *archivedViewHistoryHasOneVideoInfoTx {
-	return &archivedViewHistoryHasOneVideoInfoTx{a.db.Model(m).Association(a.Name())}
+func (a archivedViewHistoryHasOneArchivedVideo) Model(m *model.ArchivedViewHistory) *archivedViewHistoryHasOneArchivedVideoTx {
+	return &archivedViewHistoryHasOneArchivedVideoTx{a.db.Model(m).Association(a.Name())}
 }
 
-type archivedViewHistoryHasOneVideoInfoTx struct{ tx *gorm.Association }
+type archivedViewHistoryHasOneArchivedVideoTx struct{ tx *gorm.Association }
 
-func (a archivedViewHistoryHasOneVideoInfoTx) Find() (result *model.ArchivedVideo, err error) {
+func (a archivedViewHistoryHasOneArchivedVideoTx) Find() (result *model.ArchivedVideo, err error) {
 	return result, a.tx.Find(&result)
 }
 
-func (a archivedViewHistoryHasOneVideoInfoTx) Append(values ...*model.ArchivedVideo) (err error) {
+func (a archivedViewHistoryHasOneArchivedVideoTx) Append(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -157,7 +157,7 @@ func (a archivedViewHistoryHasOneVideoInfoTx) Append(values ...*model.ArchivedVi
 	return a.tx.Append(targetValues...)
 }
 
-func (a archivedViewHistoryHasOneVideoInfoTx) Replace(values ...*model.ArchivedVideo) (err error) {
+func (a archivedViewHistoryHasOneArchivedVideoTx) Replace(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -165,7 +165,7 @@ func (a archivedViewHistoryHasOneVideoInfoTx) Replace(values ...*model.ArchivedV
 	return a.tx.Replace(targetValues...)
 }
 
-func (a archivedViewHistoryHasOneVideoInfoTx) Delete(values ...*model.ArchivedVideo) (err error) {
+func (a archivedViewHistoryHasOneArchivedVideoTx) Delete(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -173,11 +173,11 @@ func (a archivedViewHistoryHasOneVideoInfoTx) Delete(values ...*model.ArchivedVi
 	return a.tx.Delete(targetValues...)
 }
 
-func (a archivedViewHistoryHasOneVideoInfoTx) Clear() error {
+func (a archivedViewHistoryHasOneArchivedVideoTx) Clear() error {
 	return a.tx.Clear()
 }
 
-func (a archivedViewHistoryHasOneVideoInfoTx) Count() int64 {
+func (a archivedViewHistoryHasOneArchivedVideoTx) Count() int64 {
 	return a.tx.Count()
 }
 

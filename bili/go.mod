@@ -3,6 +3,7 @@ module github.com/alice52/archive/bili
 go 1.20
 
 require (
+	github.com/alice52/archive/common v0.0.0-20240401101417-d16491a11c0b
 	github.com/alice52/jasypt-go v1.0.6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/gookit/goutil v0.6.15
@@ -10,7 +11,7 @@ require (
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/spf13/cast v1.6.0
 	github.com/stretchr/testify v1.8.4
-	github.com/wordpress-plus/kit-common v0.0.7
+	github.com/wordpress-plus/kit-common v0.0.9
 	go.uber.org/zap v1.26.0
 	gorm.io/driver/mysql v1.5.6
 	gorm.io/gen v0.3.25
@@ -19,6 +20,7 @@ require (
 )
 
 require (
+	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
@@ -28,7 +30,7 @@ require (
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.14.0 // indirect
-	github.com/go-sql-driver/mysql v1.7.1 // indirect
+	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/golang-migrate/migrate/v4 v4.16.2 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
@@ -61,7 +63,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
-	github.com/wordpress-plus/kit-common v0.0.7 // indirect
+	github.com/we7coreteam/gorm-gen-yaml v1.0.7 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect

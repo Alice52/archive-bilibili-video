@@ -44,10 +44,10 @@ func newArchivedCoin(db *gorm.DB, opts ...gen.DOOption) archivedCoin {
 	_archivedCoin.Owner = field.NewString(tableName, "owner")
 	_archivedCoin.Resp = field.NewString(tableName, "resp")
 	_archivedCoin.CntInfo = field.NewString(tableName, "cnt_info")
-	_archivedCoin.VideoInfo = archivedCoinHasOneVideoInfo{
+	_archivedCoin.ArchivedVideo = archivedCoinHasOneArchivedVideo{
 		db: db.Session(&gorm.Session{}),
 
-		RelationField: field.NewRelation("VideoInfo", "model.ArchivedVideo"),
+		RelationField: field.NewRelation("ArchivedVideo", "model.ArchivedVideo"),
 	}
 
 	_archivedCoin.fillFieldMap()
@@ -59,25 +59,25 @@ func newArchivedCoin(db *gorm.DB, opts ...gen.DOOption) archivedCoin {
 type archivedCoin struct {
 	archivedCoinDo
 
-	ALL        field.Asterisk
-	Bvid       field.String
-	CreateTime field.Time
-	UpdateTime field.Time
-	DeleteTime field.Field
-	Aid        field.Int64  // bili aid
-	Cid        field.Int64  // bili cid
-	Cover      field.String // video cover
-	Duration   field.Int64  // video duration
-	CoinedTime field.Int64  // video coin time
-	SeasonID   field.Int64  // bili season id
-	Intro      field.String // video intro
-	Title      field.String // video title
-	Type       field.Int64  // video type
-	Coins      field.Int64  // video coins
-	Owner      field.String // {"mid": 173986740, "name": "这个月-"}
-	Resp       field.String
-	CntInfo    field.String // {"collect": 73600, "play": 1068474, "danmaku": 2632, "vt": 0, "play_switch": 0, "reply": 0, "view_text_1": "106.8万" }
-	VideoInfo  archivedCoinHasOneVideoInfo
+	ALL           field.Asterisk
+	Bvid          field.String
+	CreateTime    field.Time
+	UpdateTime    field.Time
+	DeleteTime    field.Field
+	Aid           field.Int64  // bili aid
+	Cid           field.Int64  // bili cid
+	Cover         field.String // video cover
+	Duration      field.Int64  // video duration
+	CoinedTime    field.Int64  // video coin time
+	SeasonID      field.Int64  // bili season id
+	Intro         field.String // video intro
+	Title         field.String // video title
+	Type          field.Int64  // video type
+	Coins         field.Int64  // video coins
+	Owner         field.String // {"mid": 173986740, "name": "这个月-"}
+	Resp          field.String
+	CntInfo       field.String // {"collect": 73600, "play": 1068474, "danmaku": 2632, "vt": 0, "play_switch": 0, "reply": 0, "view_text_1": "106.8万" }
+	ArchivedVideo archivedCoinHasOneArchivedVideo
 
 	fieldMap map[string]field.Expr
 }
@@ -158,13 +158,13 @@ func (a archivedCoin) replaceDB(db *gorm.DB) archivedCoin {
 	return a
 }
 
-type archivedCoinHasOneVideoInfo struct {
+type archivedCoinHasOneArchivedVideo struct {
 	db *gorm.DB
 
 	field.RelationField
 }
 
-func (a archivedCoinHasOneVideoInfo) Where(conds ...field.Expr) *archivedCoinHasOneVideoInfo {
+func (a archivedCoinHasOneArchivedVideo) Where(conds ...field.Expr) *archivedCoinHasOneArchivedVideo {
 	if len(conds) == 0 {
 		return &a
 	}
@@ -177,27 +177,27 @@ func (a archivedCoinHasOneVideoInfo) Where(conds ...field.Expr) *archivedCoinHas
 	return &a
 }
 
-func (a archivedCoinHasOneVideoInfo) WithContext(ctx context.Context) *archivedCoinHasOneVideoInfo {
+func (a archivedCoinHasOneArchivedVideo) WithContext(ctx context.Context) *archivedCoinHasOneArchivedVideo {
 	a.db = a.db.WithContext(ctx)
 	return &a
 }
 
-func (a archivedCoinHasOneVideoInfo) Session(session *gorm.Session) *archivedCoinHasOneVideoInfo {
+func (a archivedCoinHasOneArchivedVideo) Session(session *gorm.Session) *archivedCoinHasOneArchivedVideo {
 	a.db = a.db.Session(session)
 	return &a
 }
 
-func (a archivedCoinHasOneVideoInfo) Model(m *model.ArchivedCoin) *archivedCoinHasOneVideoInfoTx {
-	return &archivedCoinHasOneVideoInfoTx{a.db.Model(m).Association(a.Name())}
+func (a archivedCoinHasOneArchivedVideo) Model(m *model.ArchivedCoin) *archivedCoinHasOneArchivedVideoTx {
+	return &archivedCoinHasOneArchivedVideoTx{a.db.Model(m).Association(a.Name())}
 }
 
-type archivedCoinHasOneVideoInfoTx struct{ tx *gorm.Association }
+type archivedCoinHasOneArchivedVideoTx struct{ tx *gorm.Association }
 
-func (a archivedCoinHasOneVideoInfoTx) Find() (result *model.ArchivedVideo, err error) {
+func (a archivedCoinHasOneArchivedVideoTx) Find() (result *model.ArchivedVideo, err error) {
 	return result, a.tx.Find(&result)
 }
 
-func (a archivedCoinHasOneVideoInfoTx) Append(values ...*model.ArchivedVideo) (err error) {
+func (a archivedCoinHasOneArchivedVideoTx) Append(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -205,7 +205,7 @@ func (a archivedCoinHasOneVideoInfoTx) Append(values ...*model.ArchivedVideo) (e
 	return a.tx.Append(targetValues...)
 }
 
-func (a archivedCoinHasOneVideoInfoTx) Replace(values ...*model.ArchivedVideo) (err error) {
+func (a archivedCoinHasOneArchivedVideoTx) Replace(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -213,7 +213,7 @@ func (a archivedCoinHasOneVideoInfoTx) Replace(values ...*model.ArchivedVideo) (
 	return a.tx.Replace(targetValues...)
 }
 
-func (a archivedCoinHasOneVideoInfoTx) Delete(values ...*model.ArchivedVideo) (err error) {
+func (a archivedCoinHasOneArchivedVideoTx) Delete(values ...*model.ArchivedVideo) (err error) {
 	targetValues := make([]interface{}, len(values))
 	for i, v := range values {
 		targetValues[i] = v
@@ -221,11 +221,11 @@ func (a archivedCoinHasOneVideoInfoTx) Delete(values ...*model.ArchivedVideo) (e
 	return a.tx.Delete(targetValues...)
 }
 
-func (a archivedCoinHasOneVideoInfoTx) Clear() error {
+func (a archivedCoinHasOneArchivedVideoTx) Clear() error {
 	return a.tx.Clear()
 }
 
-func (a archivedCoinHasOneVideoInfoTx) Count() int64 {
+func (a archivedCoinHasOneArchivedVideoTx) Count() int64 {
 	return a.tx.Count()
 }
 
