@@ -4,6 +4,8 @@ github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25
 github.com/Microsoft/go-winio v0.6.1 h1:9/kr64B9VUZrLm5YYwbGtUJnMgqWVOdUAXu6Migciow=
 github.com/alice52/archive/common v0.0.0-20240401101417-d16491a11c0b h1:5f/BdL/N5/sTpmvDsrnQupeVhgyCbPjp+qD87CrVCL8=
 github.com/alice52/archive/common v0.0.0-20240401101417-d16491a11c0b/go.mod h1:j3pGLCAgAel5T97p0bjduww7/7iuydjY59KN2xRoRzg=
+github.com/alice52/archive/common v0.0.0-20240401131902-1b1f93a0ba55 h1:b0DtiHuKPwVwHXB48v+/zVdTa3anVbjZEVufOwxGZGs=
+github.com/alice52/archive/common v0.0.0-20240401131902-1b1f93a0ba55/go.mod h1:pKN9/ltFRqjABkx2siXxUQ9szMveoLMcbdIdNpflkgM=
 github.com/alice52/jasypt-go v1.0.6 h1:zHV8YpOzEjRJqHe8mAvriwixqaiwNgSGSmNOoPiZpW4=
 github.com/alice52/jasypt-go v1.0.6/go.mod h1:HVya1CYldkpZE7d/V4HRgT1NlsewWGozfPTU27ZYFHk=
 github.com/bytedance/sonic v1.5.0/go.mod h1:ED5hyg4y6t3/9Ku1R6dU/4KyJ48DZ4jPhfY1O2AihPM=
