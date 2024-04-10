@@ -14,7 +14,7 @@ require (
 	github.com/wordpress-plus/kit-common v0.0.9
 	go.uber.org/zap v1.26.0
 	gorm.io/driver/mysql v1.5.6
-	gorm.io/gen v0.3.25
+	gorm.io/gen v0.3.26
 	gorm.io/gorm v1.25.9
 	gorm.io/plugin/dbresolver v1.5.1
 )
@@ -67,13 +67,13 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
-	golang.org/x/crypto v0.17.0 // indirect
+	golang.org/x/crypto v0.18.0 // indirect
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
 	golang.org/x/mod v0.14.0 // indirect
-	golang.org/x/net v0.19.0 // indirect
+	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.15.0 // indirect
+	golang.org/x/tools v0.17.0 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
