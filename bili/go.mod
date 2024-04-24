@@ -3,7 +3,7 @@ module github.com/alice52/archive/bili
 go 1.20
 
 require (
-	github.com/alice52/archive/common v0.0.0-20240401131902-1b1f93a0ba55
+	github.com/alice52/archive/common v0.0.0-20240424054358-7469421d30f7
 	github.com/alice52/jasypt-go v1.0.6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/gookit/goutil v0.6.15
@@ -66,6 +66,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
+	github.com/unrolled/secure v1.14.0 // indirect
 	github.com/we7coreteam/gorm-gen-yaml v1.0.7 // indirect
 	github.com/wordpress-plus/kit-common v0.0.9 // indirect
 	go.uber.org/atomic v1.9.0 // indirect

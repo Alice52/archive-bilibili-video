@@ -4,6 +4,8 @@ github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25
 github.com/Microsoft/go-winio v0.6.1 h1:9/kr64B9VUZrLm5YYwbGtUJnMgqWVOdUAXu6Migciow=
 github.com/alice52/archive/common v0.0.0-20240401131902-1b1f93a0ba55 h1:b0DtiHuKPwVwHXB48v+/zVdTa3anVbjZEVufOwxGZGs=
 github.com/alice52/archive/common v0.0.0-20240401131902-1b1f93a0ba55/go.mod h1:pKN9/ltFRqjABkx2siXxUQ9szMveoLMcbdIdNpflkgM=
+github.com/alice52/archive/common v0.0.0-20240424054358-7469421d30f7 h1:Xg0HFHOy3VaqGBX1lICT8WCXd4qqC3aqWZKI2DZCyRI=
+github.com/alice52/archive/common v0.0.0-20240424054358-7469421d30f7/go.mod h1:t918zW0Ztxq5nXEq+eFov7673NYZEff9XzQktNga5Lk=
 github.com/alice52/jasypt-go v1.0.6 h1:zHV8YpOzEjRJqHe8mAvriwixqaiwNgSGSmNOoPiZpW4=
 github.com/alice52/jasypt-go v1.0.6/go.mod h1:HVya1CYldkpZE7d/V4HRgT1NlsewWGozfPTU27ZYFHk=
 github.com/bsm/ginkgo/v2 v2.12.0 h1:Ny8MWAHyOepLGlLKYmXG4IEkioBysk6GpaRTLC8zwWs=
@@ -158,6 +160,8 @@ github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxj24w34ZyCi/FmDZTkS
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/ugorji/go/codec v1.2.11 h1:BMaWp1Bb6fHwEtbplGBGJ498wD+LKlNSl25MjdZY4dU=
 github.com/ugorji/go/codec v1.2.11/go.mod h1:UNopzCgEMSXjBc6AOMqYvWC1ktqTAfzJZUZgYf6w6lg=
+github.com/unrolled/secure v1.14.0 h1:u9vJTU/pR4Bny0ntLUMxdfLtmIRGvQf2sEFuA0TG9AE=
+github.com/unrolled/secure v1.14.0/go.mod h1:BmF5hyM6tXczk3MpQkFf1hpKSRqCyhqcbiQtiAF7+40=
 github.com/we7coreteam/gorm-gen-yaml v1.0.7 h1:zGpAjeysRfFUYIM5X7zzW/k2AMRdMc60CaYvMwPDjiY=
 github.com/we7coreteam/gorm-gen-yaml v1.0.7/go.mod h1:WAFKkK+958PFd5SBLRlIrUySrJeqUriFaiP31duc8eQ=
 github.com/wordpress-plus/kit-common v0.0.9 h1:o3itbQ5aFQEuutZr34GEdi92+mrNa2K6eKNDsKkeamY=
