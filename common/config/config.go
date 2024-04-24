@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/wordpress-plus/kit-common/viperx/vconfig"
+	"github.com/micro-services-roadmap/kit-common/viperx/vconfig"
 )
 
 type Server struct {

@@ -5,9 +5,9 @@ import (
 	c "github.com/alice52/archive/bili/api/common"
 	"github.com/alice52/archive/bili/util"
 	"github.com/alice52/archive/common/global"
-	"github.com/wordpress-plus/kit-common/kg"
-	"github.com/wordpress-plus/kit-common/viperx"
-	"github.com/wordpress-plus/kit-common/zapx"
+	"github.com/micro-services-roadmap/kit-common/kg"
+	"github.com/micro-services-roadmap/kit-common/viperx"
+	"github.com/micro-services-roadmap/kit-common/zapx"
 	"testing"
 )
 

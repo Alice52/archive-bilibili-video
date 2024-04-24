@@ -3,8 +3,8 @@ package scheduler
 import (
 	"fmt"
 	"github.com/alice52/archive/bili/service"
+	"github.com/micro-services-roadmap/kit-common/kg"
 	"github.com/robfig/cron/v3"
-	"github.com/wordpress-plus/kit-common/kg"
 	"go.uber.org/zap"
 	"log"
 )

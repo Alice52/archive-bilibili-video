@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 	"github.com/alice52/archive/bili/util"
-	"github.com/wordpress-plus/kit-common/viperx"
+	"github.com/micro-services-roadmap/kit-common/viperx"
 	"testing"
 )
 

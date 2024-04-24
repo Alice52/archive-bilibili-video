@@ -7,7 +7,7 @@ import (
 	c "github.com/alice52/archive/bili/api/common"
 	"github.com/alice52/archive/bili/api/errs"
 	m "github.com/alice52/archive/bili/api/model"
-	"github.com/wordpress-plus/kit-common/kg"
+	"github.com/micro-services-roadmap/kit-common/kg"
 	"io"
 	"io/ioutil"
 	"net/http"
