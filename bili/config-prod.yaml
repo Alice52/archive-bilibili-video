@@ -4,7 +4,7 @@ system:
   addr: 8080
 
 zap:
-  level: debug
+  level: info
   prefix: '[github.com/alice52/bili-video-archive]'
   format: json   # console
   director: logs

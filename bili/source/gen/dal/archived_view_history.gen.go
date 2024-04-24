@@ -31,6 +31,18 @@ func newArchivedViewHistory(db *gorm.DB, opts ...gen.DOOption) archivedViewHisto
 	_archivedViewHistory.CreateTime = field.NewTime(tableName, "create_time")
 	_archivedViewHistory.UpdateTime = field.NewTime(tableName, "update_time")
 	_archivedViewHistory.DeleteTime = field.NewField(tableName, "delete_time")
+	_archivedViewHistory.Title = field.NewString(tableName, "title")
+	_archivedViewHistory.Cover = field.NewString(tableName, "cover")
+	_archivedViewHistory.UpperMid = field.NewInt64(tableName, "upper_mid")
+	_archivedViewHistory.UpperName = field.NewString(tableName, "upper_name")
+	_archivedViewHistory.FaceName = field.NewString(tableName, "face_name")
+	_archivedViewHistory.Duration = field.NewInt64(tableName, "duration")
+	_archivedViewHistory.ViewAt = field.NewInt64(tableName, "view_at")
+	_archivedViewHistory.Videos = field.NewInt64(tableName, "videos")
+	_archivedViewHistory.Progress = field.NewInt64(tableName, "progress")
+	_archivedViewHistory.IsFinish = field.NewInt64(tableName, "is_finish")
+	_archivedViewHistory.Kid = field.NewInt64(tableName, "kid")
+	_archivedViewHistory.TagName = field.NewString(tableName, "tag_name")
 	_archivedViewHistory.Resp = field.NewString(tableName, "resp")
 	_archivedViewHistory.ArchivedVideo = archivedViewHistoryHasOneArchivedVideo{
 		db: db.Session(&gorm.Session{}),
@@ -52,6 +64,18 @@ type archivedViewHistory struct {
 	CreateTime    field.Time
 	UpdateTime    field.Time
 	DeleteTime    field.Field
+	Title         field.String // video title
+	Cover         field.String // video cover
+	UpperMid      field.Int64  // video upper mid
+	UpperName     field.String // video upper name
+	FaceName      field.String // video upper face
+	Duration      field.Int64  // video duration
+	ViewAt        field.Int64  // video view_at
+	Videos        field.Int64  // videos
+	Progress      field.Int64  // progress
+	IsFinish      field.Int64  // is_finish
+	Kid           field.Int64  // 稿件avid
+	TagName       field.String // video tag_name
 	Resp          field.String
 	ArchivedVideo archivedViewHistoryHasOneArchivedVideo
 
@@ -74,6 +98,18 @@ func (a *archivedViewHistory) updateTableName(table string) *archivedViewHistory
 	a.CreateTime = field.NewTime(table, "create_time")
 	a.UpdateTime = field.NewTime(table, "update_time")
 	a.DeleteTime = field.NewField(table, "delete_time")
+	a.Title = field.NewString(table, "title")
+	a.Cover = field.NewString(table, "cover")
+	a.UpperMid = field.NewInt64(table, "upper_mid")
+	a.UpperName = field.NewString(table, "upper_name")
+	a.FaceName = field.NewString(table, "face_name")
+	a.Duration = field.NewInt64(table, "duration")
+	a.ViewAt = field.NewInt64(table, "view_at")
+	a.Videos = field.NewInt64(table, "videos")
+	a.Progress = field.NewInt64(table, "progress")
+	a.IsFinish = field.NewInt64(table, "is_finish")
+	a.Kid = field.NewInt64(table, "kid")
+	a.TagName = field.NewString(table, "tag_name")
 	a.Resp = field.NewString(table, "resp")
 
 	a.fillFieldMap()
@@ -91,11 +127,23 @@ func (a *archivedViewHistory) GetFieldByName(fieldName string) (field.OrderExpr,
 }
 
 func (a *archivedViewHistory) fillFieldMap() {
-	a.fieldMap = make(map[string]field.Expr, 6)
+	a.fieldMap = make(map[string]field.Expr, 18)
 	a.fieldMap["bvid"] = a.Bvid
 	a.fieldMap["create_time"] = a.CreateTime
 	a.fieldMap["update_time"] = a.UpdateTime
 	a.fieldMap["delete_time"] = a.DeleteTime
+	a.fieldMap["title"] = a.Title
+	a.fieldMap["cover"] = a.Cover
+	a.fieldMap["upper_mid"] = a.UpperMid
+	a.fieldMap["upper_name"] = a.UpperName
+	a.fieldMap["face_name"] = a.FaceName
+	a.fieldMap["duration"] = a.Duration
+	a.fieldMap["view_at"] = a.ViewAt
+	a.fieldMap["videos"] = a.Videos
+	a.fieldMap["progress"] = a.Progress
+	a.fieldMap["is_finish"] = a.IsFinish
+	a.fieldMap["kid"] = a.Kid
+	a.fieldMap["tag_name"] = a.TagName
 	a.fieldMap["resp"] = a.Resp
 
 }

@@ -78,3 +78,17 @@ func TestSyncUserCoined(t *testing.T) {
 		panic(err)
 	}
 }
+
+func TestSyncUserVideo(t *testing.T) {
+	err := service.UserVideoService.SyncUserVideo()
+	if err != nil {
+		panic(err)
+	}
+}
+
+func TestSyncUserHistory(t *testing.T) {
+	err := service.UserHistoryService.SyncUserHistory()
+	if err != nil {
+		panic(err)
+	}
+}

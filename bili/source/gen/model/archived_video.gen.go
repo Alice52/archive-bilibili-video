@@ -44,7 +44,7 @@ type ArchivedVideo struct {
 	StatDislike    int64          `gorm:"column:stat_dislike;type:bigint;not null;comment:video dislike count" json:"stat_dislike"`          // video dislike count
 	StatNowRank    int64          `gorm:"column:stat_now_rank;type:bigint;not null;comment:video now rank" json:"stat_now_rank"`             // video now rank
 	StatHisRank    int64          `gorm:"column:stat_his_rank;type:bigint;not null;comment:video history rank" json:"stat_his_rank"`         // video history rank
-	StatEvaluation string         `gorm:"column:stat_evaluation;type:varchar(32);not null;comment:video evaluation" json:"stat_evaluation"`  // video evaluation
+	StatEvaluation *string        `gorm:"column:stat_evaluation;type:varchar(32);comment:video evaluation" json:"stat_evaluation"`           // video evaluation
 	StatVt         int64          `gorm:"column:stat_vt;type:bigint;not null;comment:video vt" json:"stat_vt"`                               // video vt
 	HonorReply     *string        `gorm:"column:honor_reply;type:json;comment:video honor reply" json:"honor_reply"`                         // video honor reply
 	Resp           *string        `gorm:"column:resp;type:json" json:"resp"`

@@ -18,6 +18,18 @@ type ArchivedViewHistory struct {
 	CreateTime    *time.Time     `gorm:"column:create_time;type:datetime(3);autoCreateTime" json:"create_time"`
 	UpdateTime    *time.Time     `gorm:"column:update_time;type:datetime(3);autoUpdateTime" json:"update_time"`
 	DeleteTime    gorm.DeletedAt `gorm:"column:delete_time;type:datetime(3)" json:"delete_time"`
+	Title         *string        `gorm:"column:title;type:text;comment:video title" json:"title"`                                           // video title
+	Cover         *string        `gorm:"column:cover;type:varchar(256);comment:video cover" json:"cover"`                                   // video cover
+	UpperMid      int64          `gorm:"column:upper_mid;type:bigint;not null;comment:video upper mid" json:"upper_mid"`                    // video upper mid
+	UpperName     string         `gorm:"column:upper_name;type:varchar(256);not null;default:0;comment:video upper name" json:"upper_name"` // video upper name
+	FaceName      string         `gorm:"column:face_name;type:varchar(256);not null;default:0;comment:video upper face" json:"face_name"`   // video upper face
+	Duration      int64          `gorm:"column:duration;type:bigint;not null;comment:video duration" json:"duration"`                       // video duration
+	ViewAt        int64          `gorm:"column:view_at;type:bigint;not null;comment:video view_at" json:"view_at"`                          // video view_at
+	Videos        int64          `gorm:"column:videos;type:bigint;not null;comment:videos" json:"videos"`                                   // videos
+	Progress      int64          `gorm:"column:progress;type:bigint;not null;comment:progress" json:"progress"`                             // progress
+	IsFinish      int64          `gorm:"column:is_finish;type:tinyint(1);not null;comment:is_finish" json:"is_finish"`                      // is_finish
+	Kid           *int64         `gorm:"column:kid;type:bigint;comment:稿件avid" json:"kid"`                                                  // 稿件avid
+	TagName       *string        `gorm:"column:tag_name;type:varchar(32);comment:video tag_name" json:"tag_name"`                           // video tag_name
 	Resp          *string        `gorm:"column:resp;type:json" json:"resp"`
 	ArchivedVideo *ArchivedVideo `gorm:"foreignKey:bvid" json:"archived_video"`
 }

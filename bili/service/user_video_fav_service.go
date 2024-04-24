@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/alice52/archive/bili/api"
+	"github.com/alice52/archive/bili/c"
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
 	"github.com/gookit/goutil/jsonutil"
@@ -33,6 +34,7 @@ func DoSyncUserFav(id int64) (err error) {
 		return err
 	}
 
+	var vs []*model.ArchivedVideo
 	for _, media := range favs.Data.Medias {
 		m := &model.ArchivedFav{
 			ID:       media.ID,
@@ -61,7 +63,14 @@ func DoSyncUserFav(id int64) (err error) {
 		if err = dal.Q.ArchivedFav.Save(m); err != nil {
 			kg.L.Error("sync upper error", zap.Error(err))
 		}
+
+		if len(media.Bvid) > 0 {
+			vs = append(vs, &model.ArchivedVideo{
+				Bvid:         media.Bvid,
+				ArchivedType: c.ArchivedTypeFav})
+		}
 	}
 
+	_ = UserVideoService.Merge(vs)
 	return err
 }

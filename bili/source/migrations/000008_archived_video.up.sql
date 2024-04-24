@@ -1,7 +1,7 @@
 create table archived_video
 (
     archived_type tinyint    not null default 0 comment '0: fav, 1: coin, 2: like, 3: view',
-    sync_status tinyint    not null default 0 comment '0: 未同步, 1: 同步中, 2: 同步完成',
+    sync_status tinyint    not null default 0 comment '是否下载 0: 未同步, 1: 同步中, 2: 同步完成',
     sync_time    datetime(3) null comment '同步时间',
 
     bvid        varchar(64)         not null,
@@ -34,7 +34,7 @@ create table archived_video
     stat_dislike  bigint           not null default 0  comment 'video dislike count',
     stat_now_rank  bigint           not null default 0  comment 'video now rank',
     stat_his_rank  bigint           not null default 0  comment 'video history rank',
-    stat_evaluation varchar(32)      not null comment 'video evaluation',
+    stat_evaluation varchar(32)       null comment 'video evaluation',
     stat_vt  bigint           not null default 0  comment 'video vt',
 
     honor_reply json                   null comment 'video honor reply',

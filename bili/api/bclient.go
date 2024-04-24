@@ -94,7 +94,7 @@ func (client *BClient) Get(url string) ([]byte, error) {
 		if ss.Code != 0 {
 			return nil, errs.StatusError{Code: ss.Code, Cause: ss.Message}
 		}
-		kg.L.Info(string(b))
+		kg.L.Debug(string(b))
 
 		return b, err
 	}
@@ -167,7 +167,7 @@ func (client *BClient) GetP(url string) ([]byte, error) {
 		if ss.Code != 0 {
 			return nil, errs.StatusError{Code: ss.Code, Cause: ss.Message}
 		}
-		kg.L.Info(string(b))
+		kg.L.Debug(string(b))
 
 		return b, err
 	}

@@ -12,7 +12,7 @@ var (
 
 //type UpperTag struct {
 //	Code    int64   `json:"code"`
-//	Data    []UpperTag `json:"data"`
+//	Histories    []UpperTag `json:"data"`
 //	Message string  `json:"message"`
 //	TTL     int64   `json:"ttl"`
 //}

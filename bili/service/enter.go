@@ -7,6 +7,8 @@ type ServiceGroup struct {
 	UserFavServiceIn
 	UserLikedServiceIn
 	UserCoinedServiceIn
+	UserVideoServiceIn
+	UserHistoryServiceIn
 }
 
 var ServiceGroupApp = new(ServiceGroup)
@@ -18,4 +20,6 @@ var (
 	UserFavService       = ServiceGroupApp.UserFavServiceIn
 	UserLikedService     = ServiceGroupApp.UserLikedServiceIn
 	UserCoinedService    = ServiceGroupApp.UserCoinedServiceIn
+	UserVideoService     = ServiceGroupApp.UserVideoServiceIn
+	UserHistoryService   = ServiceGroupApp.UserHistoryServiceIn
 )

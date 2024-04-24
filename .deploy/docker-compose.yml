@@ -1,0 +1,15 @@
+version: '3.0'
+services:
+  bili-archive:
+    image: registry.cn-shanghai.aliyuncs.com/alice52/bili-archive-go1.19.x:20240329.acf4952
+    restart: 'always'
+    container_name: bili-archive
+    volumes:
+      - /root/bili/archive/logs:/github.com/alice52/archive/logs
+      - /root/bili/archive/cookie:/github.com/alice52/archive/cookie
+    environment:
+      JASYPT_ENCRYPTOR_PASSWORD: xxxx
+      config: ./config-prod.yaml
+      #  ports:
+      #    - '8000:8888'
+

@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/alice52/archive/bili/api"
+	"github.com/alice52/archive/bili/c"
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
 	"github.com/gookit/goutil/jsonutil"
@@ -11,12 +12,13 @@ import (
 
 type UserLikedServiceIn struct{}
 
-func (c *UserLikedServiceIn) SyncUserLiked() (err error) {
+func (ce *UserLikedServiceIn) SyncUserLiked() (err error) {
 	items, err := api.LogonClient.UserLiked()
 	if err != nil {
 		return err
 	}
 
+	var vs []*model.ArchivedVideo
 	for _, item := range items.Data.List {
 		m := &model.ArchivedLike{
 			Bvid:     item.Bvid,
@@ -41,7 +43,13 @@ func (c *UserLikedServiceIn) SyncUserLiked() (err error) {
 		if err = dal.Q.ArchivedLike.Save(m); err != nil {
 			kg.L.Error("sync user liked error", zap.Error(err))
 		}
+		if len(item.Bvid) > 0 {
+			vs = append(vs, &model.ArchivedVideo{
+				Bvid:         item.Bvid,
+				ArchivedType: c.ArchivedTypeLike})
+		}
 	}
 
+	_ = UserVideoService.Merge(vs)
 	return err
 }

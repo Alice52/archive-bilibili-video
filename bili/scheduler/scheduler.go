@@ -62,6 +62,20 @@ func Scheduler() {
 		kg.L.Info("同步查询用户最近投币视频成功")
 	})
 
+	c.AddFunc("0 0/20 * * * ?", func() {
+		if err := service.UserHistoryService.SyncUserHistory(); err != nil {
+			kg.L.Error("同步用户最近20分钟的浏览历史视频失败", zap.Error(err))
+		}
+		kg.L.Info("同步用户最近20分钟的浏览历史成功")
+	})
+
+	c.AddFunc("0 0/30 * * * ?", func() {
+		if err := service.UserVideoService.SyncUserVideo(); err != nil {
+			kg.L.Error("同步用户视频失败", zap.Error(err))
+		}
+		kg.L.Info("同步用户视频成功")
+	})
+
 	// 启动调度器
 	c.Start()
 }

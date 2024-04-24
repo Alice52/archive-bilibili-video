@@ -21,5 +21,6 @@ func TestGetVideoInfo(t *testing.T) {
 		t.Error(err)
 		return
 	}
-	fmt.Println(util.MustMarshal(info))
+	s := util.MustMarshal(info)
+	fmt.Println(s)
 }

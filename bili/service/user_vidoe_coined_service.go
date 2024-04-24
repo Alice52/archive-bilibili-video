@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/alice52/archive/bili/api"
+	"github.com/alice52/archive/bili/c"
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
 	"github.com/gookit/goutil/jsonutil"
@@ -11,12 +12,13 @@ import (
 
 type UserCoinedServiceIn struct{}
 
-func (c *UserCoinedServiceIn) SyncUserCoined() (err error) {
+func (ce *UserCoinedServiceIn) SyncUserCoined() (err error) {
 	items, err := api.LogonClient.UserCoined()
 	if err != nil {
 		return err
 	}
 
+	var vs []*model.ArchivedVideo
 	for _, item := range items.Data {
 		m := &model.ArchivedCoin{
 			Bvid:       item.Bvid,
@@ -41,7 +43,13 @@ func (c *UserCoinedServiceIn) SyncUserCoined() (err error) {
 		if err = dal.Q.ArchivedCoin.Save(m); err != nil {
 			kg.L.Error("sync user coined error", zap.Error(err))
 		}
-	}
 
+		if len(item.Bvid) > 0 {
+			vs = append(vs, &model.ArchivedVideo{
+				Bvid:         item.Bvid,
+				ArchivedType: c.ArchivedTypeCoin})
+		}
+	}
+	_ = UserVideoService.Merge(vs)
 	return err
 }
