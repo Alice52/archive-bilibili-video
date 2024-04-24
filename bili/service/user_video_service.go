@@ -5,9 +5,9 @@ import (
 	"github.com/alice52/archive/bili/c"
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
-	"github.com/alice52/archive/bili/util"
 	"github.com/gookit/goutil/jsonutil"
-	"github.com/wordpress-plus/kit-common/kg"
+	"github.com/micro-services-roadmap/kit-common/kg"
+	"github.com/micro-services-roadmap/kit-common/util"
 	"go.uber.org/zap"
 	"time"
 )

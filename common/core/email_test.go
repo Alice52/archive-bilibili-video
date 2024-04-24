@@ -2,7 +2,7 @@ package core
 
 import (
 	"github.com/alice52/archive/common/util"
-	"github.com/wordpress-plus/kit-common/kg"
+	"github.com/micro-services-roadmap/kit-common/kg"
 	"testing"
 )
 

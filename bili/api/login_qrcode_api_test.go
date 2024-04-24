@@ -3,8 +3,8 @@ package api
 import (
 	"fmt"
 	"github.com/alice52/archive/common/global"
+	"github.com/micro-services-roadmap/kit-common/viperx/initialize"
 	"github.com/skip2/go-qrcode"
-	"github.com/wordpress-plus/kit-common/viperx/initialize"
 	"os"
 	"testing"
 )

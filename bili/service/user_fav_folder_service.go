@@ -5,7 +5,7 @@ import (
 	"github.com/alice52/archive/bili/source/gen/dal"
 	"github.com/alice52/archive/bili/source/gen/model"
 	"github.com/gookit/goutil/jsonutil"
-	"github.com/wordpress-plus/kit-common/kg"
+	"github.com/micro-services-roadmap/kit-common/kg"
 	"go.uber.org/zap"
 )
 
