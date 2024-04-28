@@ -6,7 +6,7 @@ system:
 zap:
   level: info
   prefix: '[github.com/alice52/bili-video-archive]'
-  format: json   # console
+  format: json # console
   director: logs
   encode-level: LowercaseColorLevelEncoder
   stacktrace-key: stacktrace
@@ -25,7 +25,7 @@ email:
 
 mysql:
   port: ENC(U+UIq85Z10ZpmuJjFuC9GSni8WTgeidQq1GIEefC7o0o3Ip9vqvvBYKPGdYV922z)
-  config: ""
+  config: ''
   db-name: bili_archive
   username: bili
   password: ENC(DrJwohxgMnQ6sUpj8l8EbHV11Y00Ptd9kZc/baaYBDidUnXnOyDPIYBT8CVeAIgZ)
@@ -34,6 +34,5 @@ mysql:
   max-idle-conns: 10
   max-open-conns: 100
   singular: false
-  log-zap: true
+  log-zap: false
   migration-path: file://./source/migrations
-

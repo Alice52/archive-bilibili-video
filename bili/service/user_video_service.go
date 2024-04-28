@@ -31,7 +31,9 @@ func (ce *UserVideoServiceIn) Merge(vs []*model.ArchivedVideo) (err error) {
 }
 
 func (ce *UserVideoServiceIn) SyncUserVideo() (err error) {
-	videos, err := dal.Q.ArchivedVideo.Where(dal.Q.ArchivedVideo.SyncStatus.Eq(c.SyncStatusTodo)).Find()
+	videos, err := dal.Q.ArchivedVideo.
+		Select(dal.Q.ArchivedVideo.Bvid, dal.Q.ArchivedVideo.ArchivedType).
+		Where(dal.Q.ArchivedVideo.SyncStatus.Eq(c.SyncStatusTodo)).Find()
 	if err != nil {
 		return err
 	}
