@@ -6,6 +6,8 @@ github.com/alice52/archive/common v0.0.0-20240401131902-1b1f93a0ba55 h1:b0DtiHuK
 github.com/alice52/archive/common v0.0.0-20240401131902-1b1f93a0ba55/go.mod h1:pKN9/ltFRqjABkx2siXxUQ9szMveoLMcbdIdNpflkgM=
 github.com/alice52/archive/common v0.0.0-20240424063235-25b8b2c81faf h1:Lhn5VVoJlLZW6rDySv9/HYDYXSgxtbG19NJfzFyZOAc=
 github.com/alice52/archive/common v0.0.0-20240424063235-25b8b2c81faf/go.mod h1:t918zW0Ztxq5nXEq+eFov7673NYZEff9XzQktNga5Lk=
+github.com/alice52/archive/common v0.0.0-20240428035626-efb67bb82221 h1:Q1yAQxtA+U+u1g/MqIthftUmMJN68QNAzxyQORl4Ows=
+github.com/alice52/archive/common v0.0.0-20240428035626-efb67bb82221/go.mod h1:t918zW0Ztxq5nXEq+eFov7673NYZEff9XzQktNga5Lk=
 github.com/alice52/jasypt-go v1.0.6 h1:zHV8YpOzEjRJqHe8mAvriwixqaiwNgSGSmNOoPiZpW4=
 github.com/alice52/jasypt-go v1.0.6/go.mod h1:HVya1CYldkpZE7d/V4HRgT1NlsewWGozfPTU27ZYFHk=
 github.com/bsm/ginkgo/v2 v2.12.0 h1:Ny8MWAHyOepLGlLKYmXG4IEkioBysk6GpaRTLC8zwWs=
