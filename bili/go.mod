@@ -15,7 +15,7 @@ require (
 	go.uber.org/zap v1.27.0
 	gorm.io/driver/mysql v1.5.6
 	gorm.io/gen v0.3.26
-	gorm.io/gorm v1.25.9
+	gorm.io/gorm v1.25.10
 	gorm.io/plugin/dbresolver v1.5.1
 )
 
@@ -66,6 +66,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
+	github.com/unrolled/secure v1.14.0 // indirect
 	github.com/we7coreteam/gorm-gen-yaml v1.0.7 // indirect
 	github.com/wordpress-plus/kit-common v0.0.9 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
