@@ -3,7 +3,7 @@ module github.com/alice52/archive/bili
 go 1.20
 
 require (
-	github.com/alice52/archive/common v0.0.0-20240424063235-25b8b2c81faf
+	github.com/alice52/archive/common v0.0.0-20240428035626-efb67bb82221
 	github.com/alice52/jasypt-go v1.0.6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/gookit/goutil v0.6.15
