@@ -25,7 +25,7 @@ email:
 
 mysql:
   port: ENC(U+UIq85Z10ZpmuJjFuC9GSni8WTgeidQq1GIEefC7o0o3Ip9vqvvBYKPGdYV922z)
-  config: ''
+  config: 'charset=utf8mb4&parseTime=True&loc=Local'
   db-name: bili_archive
   username: bili
   password: ENC(DrJwohxgMnQ6sUpj8l8EbHV11Y00Ptd9kZc/baaYBDidUnXnOyDPIYBT8CVeAIgZ)

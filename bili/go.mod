@@ -68,7 +68,6 @@ require (
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/unrolled/secure v1.14.0 // indirect
 	github.com/we7coreteam/gorm-gen-yaml v1.0.7 // indirect
-	github.com/wordpress-plus/kit-common v0.0.9 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
