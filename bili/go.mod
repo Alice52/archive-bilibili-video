@@ -7,7 +7,7 @@ require (
 	github.com/alice52/jasypt-go v1.0.6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/gookit/goutil v0.6.15
-	github.com/micro-services-roadmap/kit-common v0.2.4
+	github.com/micro-services-roadmap/kit-common v0.5.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/spf13/cast v1.6.0
